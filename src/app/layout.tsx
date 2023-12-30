@@ -2,6 +2,7 @@ import FollowBar from '@/components/FollowBar'
 import './globals.css'
 import Sidebar from '@/components/Sidebar'
 import Modal from '@/components/Modal'
+import LoginModal from '@/components/modals/LoginModal'
 
 export default function RootLayout({
   children,
@@ -11,7 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* <Modal isOpen title='Test Modal' actionLabel='Submit'/> */}
+        <LoginModal/>
         <div className='h-screen bg-black'>
           <div className='h-full container mx-auto xl:px-32 max-w-6xl'>
             <div className='grid grid-cols-4 h-full'>
