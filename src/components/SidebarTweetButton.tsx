@@ -1,8 +1,11 @@
+"use client"
+import { useRouter } from "next/navigation";
 import React from "react";
 import {FaFeather} from 'react-icons/fa'
 const SidebarTweetButton = () => {
+  const router = useRouter()
   return (
-    <div>
+    <div onClick={()=> router.push('/')}>
         <div
         className="
                 mt-6 

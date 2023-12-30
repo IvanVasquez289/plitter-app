@@ -1,9 +1,10 @@
+import Header from '@/components/Header'
 import Image from 'next/image'
 
 export default function Home() {
   return (
-    <div className='text-white'>
-      Hola mundo
-    </div>
+    <>
+      <Header label={'Home'} showBackArror/>
+    </>
   )
 }
