@@ -6,6 +6,9 @@ import Input from '../Input'
 
 import useLoginModal from '@/hooks/useLoginModal'
 import useRegisterModal from '@/hooks/useRegisterModal'
+import axios from 'axios'
+import {toast} from 'react-hot-toast'
+import { signIn } from 'next-auth/react'
 
 const RegisterModal = () => {
   const loginModal = useLoginModal()
@@ -22,14 +25,28 @@ const RegisterModal = () => {
         setIsLoading(true)
 
         // TODO: REGISTER AND LOGIN
+        await axios.post('/api/register',{
+            name,
+            username,
+            email,
+            password
+        })
+        
+        toast.success('Cuenta creada')
+        registerModal.onClose()
+        const res = signIn('credentials',{
+            email,
+            password,
+            redirect: false
+        })
 
-        registerModal.onOpen()
     } catch (error) {
         console.log(error)
+        toast.error('Ups! Algo salio mal.')
     }finally{
         setIsLoading(false)
     }
-  },[registerModal])
+  },[registerModal,name,username,email,password])
 
   const onToggle = useCallback(()=>{
     if(isLoading) return
