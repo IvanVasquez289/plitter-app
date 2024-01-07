@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import {BsHouseFill,BsBellFill} from 'react-icons/bs'
 import {FaUser} from 'react-icons/fa'
@@ -5,7 +6,14 @@ import {BiLogOut} from 'react-icons/bi'
 import SidebarLogo from './SidebarLogo'
 import SidebarItem from './SidebarItem'
 import SidebarTweetButton from './SidebarTweetButton'
-const Sidebar = () => {
+
+import useCurrentUser from '@/hooks/useCurrentUser'
+
+const Sidebar =  () => {
+
+  const {data,error} =  useCurrentUser()
+//   console.log(error?.response?.data)
+
   const items = [
     {
         label: 'Home',

@@ -6,6 +6,7 @@ export async function GET(req: NextApiRequest){
 
     try {
         const {currentUser} = await serverAuth(req)
+        console.log(currentUser.email)
         return NextResponse.json(
             currentUser,
             {status:200}
