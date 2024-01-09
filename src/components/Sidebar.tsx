@@ -22,17 +22,20 @@ const Sidebar =  () => {
     {
         label: 'Home',
         href: '/',
-        icon: BsHouseFill
+        icon: BsHouseFill,
+        protectedRoute: false,
     },
     {
         label: 'Notifications',
         href: '/notifications',
-        icon: BsBellFill
+        icon: BsBellFill,
+        protectedRoute: true,
     },
     {
         label: 'Profile',
         href: '/users/123',
-        icon: FaUser
+        icon: FaUser,
+        protectedRoute: true,
     },
   ]
 
@@ -47,6 +50,7 @@ const Sidebar =  () => {
                         label={item.label}
                         href={item.href}
                         icon={item.icon}
+                        protectedRoute={item.protectedRoute}
                     />
                 ))}
                 {session?.user?.email && (
