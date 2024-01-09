@@ -32,13 +32,13 @@ const RegisterModal = () => {
             password
         })
         
+        
         toast.success('Cuenta creada')
-        registerModal.onClose()
-        const res = signIn('credentials',{
+        await signIn('credentials',{
             email,
             password,
-            redirect: false
         })
+        registerModal.onClose()
 
     } catch (error) {
         console.log(error)
