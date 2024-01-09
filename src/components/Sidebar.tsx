@@ -8,13 +8,15 @@ import SidebarItem from './SidebarItem'
 import SidebarTweetButton from './SidebarTweetButton'
 
 import useCurrentUser from '@/hooks/useCurrentUser'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
 const Sidebar =  () => {
    // TODO: REEMPLAZAR EL HOOK CON EL GETSESSION QUE NOS PROPORCIONA NEXTAUTH
-  const {data,error} =  useCurrentUser()
-    //   console.log(data)
-    //   console.log(error?.response?.data)
+  const {data:session,status} = useSession()
+  //console.log(session)
+  //const {data,error} =  useCurrentUser()
+  //console.log(data)
+  //console.log(error?.response?.data)
 
   const items = [
     {
@@ -47,7 +49,7 @@ const Sidebar =  () => {
                         icon={item.icon}
                     />
                 ))}
-                {data && (
+                {session?.user?.email && (
                     <SidebarItem label='Logout' icon={BiLogOut} onClick={() => signOut()}/>
                 )}
                 <SidebarTweetButton/>

@@ -18,7 +18,7 @@ const LoginModal = () => {
     try {
         setIsLoading(true)
 
-        // TODO: ADD LOGIN
+        // TODO: CREAR COMPONENTE ALERTA QUE MUESTRE ERRORES AL INGRESAR
         await signIn('credentials',{
           email,
           password,
@@ -45,12 +45,14 @@ const LoginModal = () => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             disabled={isLoading}
+            type='email'
         />
         <Input
             placeholder='Password'
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             disabled={isLoading}
+            type='password'
         />
     </div>
   )
