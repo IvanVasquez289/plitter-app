@@ -13,7 +13,7 @@ import { signOut, useSession } from 'next-auth/react'
 const Sidebar =  () => {
    // TODO: REEMPLAZAR EL HOOK CON EL GETSESSION QUE NOS PROPORCIONA NEXTAUTH
   const {data:session,status} = useSession()
-  //console.log(session)
+//   console.log(session)
   //const {data,error} =  useCurrentUser()
   //console.log(data)
   //console.log(error?.response?.data)
