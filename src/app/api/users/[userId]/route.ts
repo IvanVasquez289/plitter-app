@@ -1,10 +1,12 @@
-import { NextApiRequest } from "next"
 import { NextResponse } from "next/server"
 import prisma from '@/libs/prismadb';
 
-export async function GET(req: NextApiRequest){
+export async function GET(
+    req: Request, 
+    {params}: {params: {userId: string}}
+){
     try {
-        const {userId} = req.query
+        const userId = params.userId;
 
         if(!userId || typeof userId !== 'string'){
             return new NextResponse('Bad Request', { status: 400 })

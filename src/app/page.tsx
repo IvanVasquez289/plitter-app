@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <>
-      <Header label={'Home'} showBackArror/>
+      <Header label={'Home'}/>
     </>
   )
 }
