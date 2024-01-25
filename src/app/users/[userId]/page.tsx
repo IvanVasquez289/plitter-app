@@ -1,5 +1,7 @@
 "use client"
 import Header from '@/components/Header'
+import UserBio from '@/components/users/UserBio'
+import UserHero from '@/components/users/UserHero'
 import useUser from '@/hooks/useUser'
 import { useParams } from 'next/navigation'
 import React from 'react'
@@ -22,6 +24,8 @@ const UserView = () => {
   return (
     <>
       <Header label={data?.name} showBackArror/>
+      <UserHero userId={userId as string}/> 
+      <UserBio userId={userId as string}/>
     </>
   )
 }
