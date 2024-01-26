@@ -1,9 +1,12 @@
-import FollowBar from '@/components/FollowBar'
 import './globals.css'
+
+import FollowBar from '@/components/FollowBar'
 import Sidebar from '@/components/Sidebar'
-import Modal from '@/components/Modal'
+
 import LoginModal from '@/components/modals/LoginModal'
 import RegisterModal from '@/components/modals/RegisterModal'
+import EditModal from '@/components/modals/EditModal'
+
 import { Toaster } from 'react-hot-toast'
 import Providers from './Providers'
 
@@ -17,6 +20,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Toaster/>
+          <EditModal/>
           <LoginModal/>
           <RegisterModal/>
           <div className='h-screen bg-black'>

@@ -21,7 +21,7 @@ const Input: React.FC<InputProps> = ({
       disabled={disabled}
       onChange={onChange}
       placeholder={placeholder}
-      value={value}
+      value={value || ''}
       className='
         w-full 
         p-4 text-xl 

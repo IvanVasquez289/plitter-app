@@ -1,5 +1,6 @@
 "use client"
 import Header from '@/components/Header'
+import EditModal from '@/components/modals/EditModal'
 import UserBio from '@/components/users/UserBio'
 import UserHero from '@/components/users/UserHero'
 import useUser from '@/hooks/useUser'
@@ -26,6 +27,7 @@ const UserView = () => {
       <Header label={data?.name} showBackArror/>
       <UserHero userId={userId as string}/> 
       <UserBio userId={userId as string}/>
+      <EditModal/>
     </>
   )
 }
