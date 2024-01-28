@@ -8,6 +8,7 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 import Modal from '../Modal'
 import Input from '../Input'
+import ImageUpload from '../ImageUpload'
 
 const EditModal = () => {
 
@@ -61,6 +62,18 @@ const EditModal = () => {
 
   const bodyContent = (
     <div className=' flex flex-col gap-4'>
+        <ImageUpload
+          label = "Subir foto de perfil"
+          onChange={(image) => setProfileImage(image)}
+          value={profileImage}
+          disabled={isLoading}
+        />
+        <ImageUpload
+          label = "Subir foto de portada"
+          onChange={(image) => setCoverImage(image)}
+          value={coverImage}
+          disabled={isLoading}
+        />
         <Input
             placeholder='Name'
             onChange={(e) => setName(e.target.value)}
