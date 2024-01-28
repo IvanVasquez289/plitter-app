@@ -9,11 +9,13 @@ import axios from 'axios'
 import Modal from '../Modal'
 import Input from '../Input'
 import ImageUpload from '../ImageUpload'
+import useUsers from '@/hooks/useUsers'
 
 const EditModal = () => {
 
   const {data: currentUser} = useCurrentUser()
   const {mutate: mutateFetchedUser} = useUser(currentUser?.id)
+  const {mutate: mutateUsers} = useUsers()
   const editModal = useEditModal()
 
   const [profileImage,setProfileImage] = useState('')
@@ -51,6 +53,7 @@ const EditModal = () => {
       })
 
       mutateFetchedUser()
+      mutateUsers()
       editModal.onClose()
       toast.success('Actualizado')
     } catch (error) {
@@ -58,7 +61,7 @@ const EditModal = () => {
     } finally {
       setIsLoading(false)
     }
-  },[bio,coverImage,editModal,mutateFetchedUser,name,profileImage,username])
+  },[bio,coverImage,editModal,mutateFetchedUser,name,profileImage,username, mutateUsers])
 
   const bodyContent = (
     <div className=' flex flex-col gap-4'>
