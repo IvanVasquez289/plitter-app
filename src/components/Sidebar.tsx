@@ -14,8 +14,8 @@ const Sidebar =  () => {
    // TODO: REEMPLAZAR EL HOOK CON EL GETSESSION QUE NOS PROPORCIONA NEXTAUTH
   const {data:session,status} = useSession()
 //   console.log(session)
-  //const {data,error} =  useCurrentUser()
-  //console.log(data)
+  const {data,error} =  useCurrentUser()
+  console.log(data)
   //console.log(error?.response?.data)
 
   const items = [
@@ -33,7 +33,7 @@ const Sidebar =  () => {
     },
     {
         label: 'Profile',
-        href: '/users/123',
+        href: `/users/${data.id}`,
         icon: FaUser,
         protectedRoute: true,
     },
@@ -53,7 +53,7 @@ const Sidebar =  () => {
                         protectedRoute={item.protectedRoute}
                     />
                 ))}
-                {session?.user?.email && (
+                {data?.id && (
                     <SidebarItem label='Logout' icon={BiLogOut} onClick={() => signOut()}/>
                 )}
                 <SidebarTweetButton/>
