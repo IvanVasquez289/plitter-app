@@ -15,7 +15,7 @@ const Sidebar =  () => {
   const {data:session,status} = useSession()
 //   console.log(session)
   const {data,error} =  useCurrentUser()
-  console.log(data)
+//   console.log(data)
   //console.log(error?.response?.data)
 
   const items = [
@@ -33,7 +33,7 @@ const Sidebar =  () => {
     },
     {
         label: 'Profile',
-        href: `/users/${data.id}`,
+        href: `/users/${data?.id}`,
         icon: FaUser,
         protectedRoute: true,
     },

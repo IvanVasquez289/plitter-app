@@ -5,7 +5,6 @@ import Avatar from './Avatar'
 
 const FollowBar = () => {
   const {data:users = []} = useUsers()
-  console.log(users)
   return (
     <div className='px-6 py-4 hidden lg:block'>
         <div className='bg-neutral-800 rounded-xl p-4'>
