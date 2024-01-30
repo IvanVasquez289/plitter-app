@@ -7,7 +7,7 @@ export async function GET(
 ){
     try {
         const userId = params.userPosts;
-        console.log(userId)
+        // console.log(userId)
         if(!userId || typeof userId !== 'string'){
             return new NextResponse('Bad Request', { status: 400 })
         }
@@ -25,7 +25,7 @@ export async function GET(
             }
         })
       
-        return  NextResponse.json({userPosts}, {status:200})
+        return  NextResponse.json(userPosts, {status:200})
         
     } catch (error) {
         if(error instanceof Error){

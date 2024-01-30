@@ -15,8 +15,8 @@ const UserBio: React.FC<UserBioProps> = ({userId}) => {
   const {data: currentUser} = useCurrentUser()
   const {data: fetchedUser} = useUser(userId)
   const editModal = useEditModal()
-  console.log(currentUser)
-  console.log(fetchedUser)
+//   console.log(currentUser)
+//   console.log(fetchedUser)
   const createdAt = useMemo(()=>{
     if(!fetchedUser?.createdAt){
         return null;
