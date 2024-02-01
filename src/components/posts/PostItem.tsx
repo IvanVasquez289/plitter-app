@@ -13,7 +13,7 @@ interface PostItemProps {
     userId?: string;
 }
 const PostItem: React.FC<PostItemProps> = ({data,userId}) => {
-  // console.log(data)
+  console.log(data)
   const router = useRouter()
   const loginModal = useLoginModal()
 
@@ -22,12 +22,12 @@ const PostItem: React.FC<PostItemProps> = ({data,userId}) => {
   const goToUser = useCallback((ev: any)=> {
     ev.stopPropagation()
     router.push(`/users/${data?.user?.id}`)
-  },[router,data.user.id])
+  },[router,data?.user?.id])
 
   const goToPost = useCallback((ev: any)=> {
     ev.stopPropagation()
     router.push(`/posts/${data?.id}`)
-  },[router,data.id])
+  },[router,data?.id])
 
   const onLike = useCallback((ev: any)=> {
     ev.stopPropagation()
