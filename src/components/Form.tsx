@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import Button from './Button';
 import Avatar from './Avatar';
 import useUserPosts from '@/hooks/useUserPosts';
+import usePost from '@/hooks/usePost';
 
 interface FormProps {
     placeholder: string; 
@@ -21,6 +22,7 @@ const Form: React.FC<FormProps> = ({placeholder,isComment,postId}) => {
 
   const {data: currentUser} = useCurrentUser()
   const {mutate: mutatePosts} = usePosts()
+  const {mutate: mutateFetchedPost} = usePost(postId as string)
 
   const [body,setBody] = useState('')
   const [isLoading,setIsLoading] = useState(false)
@@ -31,19 +33,28 @@ const Form: React.FC<FormProps> = ({placeholder,isComment,postId}) => {
         return toast.error("Todos los campos son obligatorios")
       }
       setIsLoading(true)
+      let request;
+      let msj;
 
-      await axios.post('/api/posts',{body})
-
+      if(isComment){
+        request = () => axios.post('/api/comments',{body,postId})
+        msj ="Comentario agregado"
+      }else{
+        request = () => axios.post('/api/posts',{body})
+        msj ="Publicación agregada"
+      }
+      // await axios.post('/api/posts',{body})
+      await request()
       mutatePosts()
       setBody('')
-
-      toast.success('Post agregado')
+      mutateFetchedPost()
+      toast.success(msj)
     } catch (error) {
       toast.error('Hubo un error')
     }finally{
       setIsLoading(false)
     }
-  },[body, mutatePosts])
+  },[body, mutatePosts,isComment,postId,mutateFetchedPost])
 
   return (
     <div className='border-b-[1px] border-neutral-800 px-5 py-2'>
