@@ -1,12 +1,10 @@
 import useCurrentUser from "@/hooks/useCurrentUser";
 import serverAuth from "@/libs/serverAuth";
-import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 import prisma from '@/libs/prismadb';
 
 export async function POST(
     request: Request, 
-    reqNext: NextApiRequest
 ){
     try {
         const {currentUser} = await serverAuth(request)

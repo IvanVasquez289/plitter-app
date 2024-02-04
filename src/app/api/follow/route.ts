@@ -1,10 +1,9 @@
 import serverAuth from "@/libs/serverAuth";
-import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 import prisma from "@/libs/prismadb";
 
 
-export async function POST (request: Request, reqNext: NextApiRequest){
+export async function POST (request: Request){
     try {
         const {userId} = await request.json()
         const {currentUser} = await serverAuth(request)
@@ -66,7 +65,7 @@ export async function POST (request: Request, reqNext: NextApiRequest){
     }
 }
 
-export async function DELETE (request: Request, reqNext: NextApiRequest){
+export async function DELETE (request: Request){
     try {
         const {userId} = await request.json()
         const {currentUser} = await serverAuth(request)

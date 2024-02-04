@@ -1,9 +1,8 @@
-import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 import prisma from "@/libs/prismadb";
 import serverAuth from "@/libs/serverAuth";
 
-export async function PATCH(req: Request, nextReq: NextApiRequest) {
+export async function PATCH(req: Request) {
   try {
     const { currentUser } = await serverAuth(req);
 
