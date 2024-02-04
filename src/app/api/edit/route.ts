@@ -5,7 +5,7 @@ import serverAuth from "@/libs/serverAuth";
 
 export async function PATCH(req: Request, nextReq: NextApiRequest) {
   try {
-    const { currentUser } = await serverAuth(nextReq);
+    const { currentUser } = await serverAuth(req);
 
     const { name, username, bio, profileImage, coverImage } = await req.json();
 

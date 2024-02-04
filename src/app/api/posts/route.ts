@@ -7,7 +7,7 @@ export async function POST(request: Request, reqNext: NextApiRequest ) {
   const { body } = await request.json();
 
   try {
-    const { currentUser } = await serverAuth(reqNext);
+    const { currentUser } = await serverAuth(request);
     const post = await prisma.post.create({
       data: {
         body,

@@ -9,7 +9,7 @@ export async function POST(
     reqNext: NextApiRequest
 ){
     try {
-        const {currentUser} = await serverAuth(reqNext)
+        const {currentUser} = await serverAuth(request)
         const {body,postId} = await request.json()
 
         if(!postId || typeof postId !== 'string'){

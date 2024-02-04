@@ -7,7 +7,7 @@ import prisma from "@/libs/prismadb";
 export async function POST (request: Request, reqNext: NextApiRequest){
     try {
         const {userId} = await request.json()
-        const {currentUser} = await serverAuth(reqNext)
+        const {currentUser} = await serverAuth(request)
 
         if(!userId || typeof userId !== 'string'){
             return NextResponse.json({msj:  'Invalid data'},  {status:401})
@@ -69,7 +69,7 @@ export async function POST (request: Request, reqNext: NextApiRequest){
 export async function DELETE (request: Request, reqNext: NextApiRequest){
     try {
         const {userId} = await request.json()
-        const {currentUser} = await serverAuth(reqNext)
+        const {currentUser} = await serverAuth(request)
 
         if(!userId || typeof userId !== 'string'){
             return NextResponse.json({msj:  'Invalid data'},  {status:401})

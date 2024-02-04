@@ -4,7 +4,7 @@ import prisma from '@/libs/prismadb';
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/api/auth/[...nextauth]/options";
 
-const serverAuth = async (req:NextApiRequest) => {
+const serverAuth = async (req:Request) => {
     const session = await getServerSession(authOptions);
     // console.log(session)
     if(!session?.user?.email){
