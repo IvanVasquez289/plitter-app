@@ -28,6 +28,22 @@ export async function POST (request: Request, reqNext: NextApiRequest){
 
         updatedLikeIds.push(currentUser.id)
 
+        await prisma.notification.create({
+            data:{
+                body: 'Alguien le dio me gusta a tu tweet',
+                userId: post.userId
+            }
+        })
+
+        await prisma.user.update({
+            where:{
+                id : post.userId
+            },
+            data: {
+                hasNotification: true
+            }
+        })
+        
         const updatedPost = await prisma.post.update({
             where:{
                 id : postId

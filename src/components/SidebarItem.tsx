@@ -1,22 +1,24 @@
+import React, { useCallback } from 'react'
 import useLoginModal from '@/hooks/useLoginModal';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import React, { useCallback } from 'react'
 import { IconType } from 'react-icons';
-
+import { BsDot } from 'react-icons/bs';
 interface SidebarItemProps {
     label :string;
     href?: string;
     icon: IconType;
     onClick?: () => void
     protectedRoute?: boolean;
+    alert?: boolean;
 }
 const SidebarItem: React.FC<SidebarItemProps> = ({
     label,
     href,
     icon:Icon,
     onClick,
-    protectedRoute
+    protectedRoute,
+    alert
 }) => {
     
   const router = useRouter()
@@ -24,7 +26,10 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   const loginModal = useLoginModal()
 
   const handleClick = useCallback(()=>{
-    if(onClick) onClick();
+    if(onClick) {
+        onClick();
+        return
+    } 
 
     if(protectedRoute && !session?.user?.email){
         loginModal.onOpen()
@@ -45,6 +50,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             '
         >
             <Icon size={28} color='white'/>
+            {alert ? <BsDot className='text-sky-500 absolute left-0 -top-4' size={70}/> : null}
         </div>
         <div
             className='
@@ -59,6 +65,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             <p className='hidden lg:block text-white text-xl'>
                 {label}
             </p>
+            {alert ? <BsDot className='text-sky-500 absolute left-0 -top-4' size={70}/> : null}
         </div>
     </div>
   )

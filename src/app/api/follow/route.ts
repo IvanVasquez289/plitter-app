@@ -28,6 +28,24 @@ export async function POST (request: Request, reqNext: NextApiRequest){
 
         updatedFollowingIds.push(userId)
 
+        try {
+           await prisma.notification.create({
+            data:{
+                body:'Alguien te ha seguido',
+                userId: userId
+            }
+           }) 
+           await prisma.user.update({
+                where:{
+                    id: userId
+                },
+                data:{
+                    hasNotification:true
+                }
+           })
+        } catch (error) {
+            console.log(error)
+        }
         const updatedUser = await prisma.user.update({
             where:{
                 id : currentUser.id

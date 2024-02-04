@@ -25,6 +25,36 @@ export async function POST(
             }
         })
 
+        try {
+            const post = await prisma.post.findUnique({
+                where:{
+                    id: postId
+                }
+            })
+
+            if(post?.userId){
+                await prisma.notification.create({
+                    data:{
+                        body: 'Alguien comentó tu tweet',
+                        userId: post.userId
+                    }
+                })
+        
+                await prisma.user.update({
+                    where:{
+                        id : post.userId
+                    },
+                    data: {
+                        hasNotification: true
+                    }
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        
+
+
         return NextResponse.json(comment,{status:200})
 
     } catch (error) {

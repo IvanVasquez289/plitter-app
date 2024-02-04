@@ -14,9 +14,9 @@ const Sidebar =  () => {
    // TODO: REEMPLAZAR EL HOOK CON EL GETSESSION QUE NOS PROPORCIONA NEXTAUTH
   const {data:session,status} = useSession()
 //   console.log(session)
-  const {data,error} =  useCurrentUser()
-//   console.log(data)
-  //console.log(error?.response?.data)
+  const {data: currentUser ,error} =  useCurrentUser()
+  // console.log(currentUser?.hasNotification)
+  //console.log(error?.response?.currentUser)
 
   const items = [
     {
@@ -30,10 +30,11 @@ const Sidebar =  () => {
         href: '/notifications',
         icon: BsBellFill,
         protectedRoute: true,
+        alert: currentUser?.hasNotification
     },
     {
         label: 'Profile',
-        href: `/users/${data?.id}`,
+        href: `/users/${currentUser?.id}`,
         icon: FaUser,
         protectedRoute: true,
     },
@@ -51,9 +52,10 @@ const Sidebar =  () => {
                         href={item.href}
                         icon={item.icon}
                         protectedRoute={item.protectedRoute}
+                        alert={item.alert}
                     />
                 ))}
-                {data?.id && (
+                {currentUser?.id && (
                     <SidebarItem label='Logout' icon={BiLogOut} onClick={() => signOut()}/>
                 )}
                 <SidebarTweetButton/>
